@@ -1,3 +1,5 @@
+import { Toaster } from '@/components/ui/toaster';
+
 export default function AuthLayout({
   children,
 }: {
@@ -7,6 +9,7 @@ export default function AuthLayout({
     <div className="flex flex-col gap-y-4">
       <nav className="p-2 bg-red-500">Auth Layout Navbar</nav>
       <main className="container">{children}</main>
+      <Toaster />
     </div>
   );
 }
