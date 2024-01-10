@@ -25,7 +25,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useMediaQuery } from '@/hooks/use-media-query';
 
+export const metadata: Metadata = {
+  title: 'Profile',
+};
+
 import { cn } from '@/lib/utils';
+import { Metadata } from 'next';
 
 // renders a dialog on the desktop and tablet and a drawer on mobile
 

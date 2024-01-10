@@ -1,8 +1,14 @@
 'use client';
+
 import { Button } from '@/components/ui/button';
 import { BeakerIcon } from '@heroicons/react/24/solid';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { toast } from 'sonner';
+
+export const metadata: Metadata = {
+  title: 'Register',
+};
 
 export default function RegisterPage() {
   return (
