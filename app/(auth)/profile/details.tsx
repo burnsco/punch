@@ -4,7 +4,7 @@ import { useOrganization, useSession, useUser } from '@clerk/nextjs';
 
 import { useEffect, useState } from 'react';
 
-import { Dot } from '@/components/icons';
+import { Dot } from '@/icons';
 import { cn } from '@/lib/utils';
 import { CopyIcon } from '@radix-ui/react-icons';
 import Image from 'next/image';

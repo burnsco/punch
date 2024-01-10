@@ -1,13 +1,10 @@
 import { cn } from '@/lib/utils';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
-import { Inter as FontSans } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
-export const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: {
@@ -29,8 +26,7 @@ export default function RootLayout({
         <head />
         <body
           className={cn(
-            'min-h-screen bg-background font-sans antialiased',
-            fontSans.variable
+            `${inter.variable} min-h-screen bg-background font-sans antialiased`
           )}
         >
           {children}

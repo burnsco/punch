@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button';
-import { SignOutButton } from '@clerk/nextjs';
 
 export default function Home() {
   return (
@@ -10,7 +9,6 @@ export default function Home() {
       <Button size="lg" variant="ghost">
         Press Me
       </Button>
-      <SignOutButton />
     </main>
   );
 }
