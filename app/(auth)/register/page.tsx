@@ -7,7 +7,9 @@ import { toast } from 'sonner';
 export default function RegisterPage() {
   return (
     <section>
-      <h3 className="text-xl font-semibold">Register Page</h3>
+      <h3 className="text-xl font-black leading-loose tracking-wider">
+        Register Page
+      </h3>
       <div className="w-[450px]">
         <Image
           width={200}
