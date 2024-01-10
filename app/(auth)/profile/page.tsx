@@ -1,98 +1,53 @@
-'use client';
-
-import * as React from 'react';
-
-import { Button } from '@/components/ui/button';
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useMediaQuery } from '@/hooks/use-media-query';
+  OrgDetails,
+  SessionDetails,
+  UserDetails,
+} from '@/app/(auth)/profile/details';
+import ProfileTest from '@/components/pages/profile-test';
+import { Skeleton } from '@/components/ui/skeleton';
+import { auth, clerkClient } from '@clerk/nextjs';
+import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
-export const metadata: Metadata = {
-  title: 'Profile',
-};
+export default async function DashboardPage() {
+  const { userId } = auth();
 
-import { cn } from '@/lib/utils';
-import { Metadata } from 'next';
-
-// renders a dialog on the desktop and tablet and a drawer on mobile
-
-export default function DrawerDialogDemo() {
-  const [open, setOpen] = React.useState(false);
-  const isDesktop = useMediaQuery('(min-width: 768px)');
-
-  if (isDesktop) {
-    return (
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button variant="outline">Edit Profile</Button>
-        </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
-          <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
-            <DialogDescription>
-              Make changes to your profile here. Click save when you&apos;re
-              done.
-            </DialogDescription>
-          </DialogHeader>
-          <ProfileForm />
-        </DialogContent>
-      </Dialog>
-    );
+  if (!userId) {
+    redirect('/');
   }
 
-  return (
-    <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
-      </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
-          <DrawerDescription>
-            Make changes to your profile here. Click save when you&apos;re done.
-          </DrawerDescription>
-        </DrawerHeader>
-        <ProfileForm className="px-4" />
-        <DrawerFooter className="pt-2">
-          <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  );
-}
+  const user = await clerkClient.users.getUser(userId);
 
-function ProfileForm({ className }: React.ComponentProps<'form'>) {
   return (
-    <form className={cn('grid items-start gap-4', className)}>
-      <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" defaultValue="shadcn@example.com" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="username">Username</Label>
-        <Input id="username" defaultValue="@shadcn" />
-      </div>
-      <Button type="submit">Save changes</Button>
-    </form>
+    <div className="px-8 py-12 sm:py-16 md:px-20">
+      {user && (
+        <>
+          <h1 className="text-3xl font-semibold text-black">
+            👋 Hi, {user.firstName || `Stranger`}
+          </h1>
+          <div className="grid gap-4 mt-8 lg:grid-cols-3">
+            <UserDetails />
+            <SessionDetails />
+            <OrgDetails />
+          </div>
+          <h2 className="mt-16 mb-4 text-3xl font-semibold text-black">
+            What&apos;s next?
+          </h2>
+          Read the{' '}
+          <Link
+            className="font-medium text-primary-600 hover:underline"
+            href="https://clerk.com/docs?utm_source=vercel-template&utm_medium=template_repos&utm_campaign=nextjs_template"
+            target="_blank"
+          >
+            Clerk Docs -&gt;
+          </Link>
+        </>
+      )}
+
+      <Suspense fallback={<Skeleton />}>
+        <ProfileTest />
+      </Suspense>
+    </div>
   );
 }

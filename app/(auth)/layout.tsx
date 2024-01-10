@@ -8,7 +8,7 @@ export default function AuthLayout({
 }) {
   return (
     <div className="flex flex-col gap-y-4">
-      <header>
+      <header className="bg-slate-300 ">
         <SignedIn>
           {/* Mount the UserButton component */}
           <UserButton />
