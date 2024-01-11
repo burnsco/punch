@@ -1,5 +1,5 @@
 'use client';
-import { useUser } from '@clerk/nextjs';
+import { UserButton, useUser } from '@clerk/nextjs';
 
 export default function DashboardPage() {
   const { isLoaded, user } = useUser();
@@ -14,6 +14,7 @@ export default function DashboardPage() {
       <h3 className="text-bold">Dashboard Page</h3>
       <p>user - {user.firstName}</p>
       <p>fullname - {user.fullName}</p>
+      <UserButton afterSignOutUrl="/register" />
     </section>
   );
 }

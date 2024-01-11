@@ -7,19 +7,19 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-y-4">
-      <header className="bg-slate-300 ">
+    <div className="flex flex-col h-full">
+      <header className="bg-slate-300 p-4 ">
         <SignedIn>
-          {/* Mount the UserButton component */}
           <UserButton />
         </SignedIn>
         <SignedOut>
-          {/* Signed out users get sign in button */}
           <SignInButton />
         </SignedOut>
       </header>
 
-      <main className="container">{children}</main>
+      <main className="container flex h-full items-center justify-center">
+        {children}
+      </main>
       <Toaster />
     </div>
   );
