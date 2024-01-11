@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     default: 'Punch',
   },
   description: 'The next generation streaming platform.',
-  metadataBase: new URL('https://punch.coreyburns.dev'),
+  metadataBase: new URL('https://punch-hazel.vercel.app/'),
 };
 
 export default function RootLayout({
