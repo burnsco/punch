@@ -17,7 +17,11 @@ export default function AuthLayout({
         </SignedOut>
       </header>
 
-      <main className="container flex h-full items-center justify-center">
+      <main
+        className="
+        container flex h-full items-center justify-center bg-gradient-to-r
+       from-indigo-300 from-10% via-sky-200 via-30% to-emerald-400 to-90%"
+      >
         {children}
       </main>
       <Toaster />
