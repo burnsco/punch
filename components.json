@@ -5,13 +5,12 @@
     "utils": "@/lib/utils"
   },
   "rsc": true,
-  "style": "new-york",
+  "style": "default",
   "tailwind": {
-    "baseColor": "zinc",
+    "baseColor": "neutral",
     "config": "tailwind.config.ts",
     "css": "app/globals.css",
-    "cssVariables": true,
-    "prefix": ""
+    "cssVariables": true
   },
   "tsx": true
 }

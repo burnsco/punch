@@ -1,4 +1,3 @@
-import { Toaster } from '@/components/ui/sonner';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 export default function AuthLayout({
@@ -24,7 +23,6 @@ export default function AuthLayout({
       >
         {children}
       </main>
-      <Toaster />
     </div>
   );
 }
